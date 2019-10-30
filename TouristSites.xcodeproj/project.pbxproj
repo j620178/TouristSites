@@ -13,9 +13,13 @@
 		741B6ECF236A59BA00B76090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741B6ECD236A59BA00B76090 /* Main.storyboard */; };
 		741B6ED1236A59BC00B76090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741B6ED0236A59BC00B76090 /* Assets.xcassets */; };
 		741B6ED4236A59BC00B76090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741B6ED2236A59BC00B76090 /* LaunchScreen.storyboard */; };
+		84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0ED39D4C8538C9220125F89E /* Pods-TouristSites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouristSites.debug.xcconfig"; path = "Target Support Files/Pods-TouristSites/Pods-TouristSites.debug.xcconfig"; sourceTree = "<group>"; };
+		3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouristSites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D0B3762F8358DB2EFC7B9D7 /* Pods-TouristSites.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouristSites.release.xcconfig"; path = "Target Support Files/Pods-TouristSites/Pods-TouristSites.release.xcconfig"; sourceTree = "<group>"; };
 		741B6EC4236A59BA00B76090 /* TouristSites.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristSites.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741B6EC7236A59BA00B76090 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		741B6EC9236A59BA00B76090 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4615357E254CFBBA79486829 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0ED39D4C8538C9220125F89E /* Pods-TouristSites.debug.xcconfig */,
+				5D0B3762F8358DB2EFC7B9D7 /* Pods-TouristSites.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		741B6EBB236A59BA00B76090 = {
 			isa = PBXGroup;
 			children = (
 				741B6EC6236A59BA00B76090 /* TouristSites */,
 				741B6EC5236A59BA00B76090 /* Products */,
+				4615357E254CFBBA79486829 /* Pods */,
+				782EAEBDF6F42F4060BDFCDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = TouristSites;
 			sourceTree = "<group>";
 		};
+		782EAEBDF6F42F4060BDFCDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 741B6ED8236A59BC00B76090 /* Build configuration list for PBXNativeTarget "TouristSites" */;
 			buildPhases = (
+				E1302F5507E0C14604FC5B4F /* [CP] Check Pods Manifest.lock */,
 				741B6EC0236A59BA00B76090 /* Sources */,
 				741B6EC1236A59BA00B76090 /* Frameworks */,
 				741B6EC2236A59BA00B76090 /* Resources */,
+				FC85FA9D70AF8BD025ED36CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1302F5507E0C14604FC5B4F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TouristSites-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC85FA9D70AF8BD025ED36CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouristSites/Pods-TouristSites-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TouristSites/Pods-TouristSites-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TouristSites/Pods-TouristSites-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		741B6EC0236A59BA00B76090 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		741B6ED9236A59BC00B76090 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ED39D4C8538C9220125F89E /* Pods-TouristSites.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +370,7 @@
 		};
 		741B6EDA236A59BC00B76090 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D0B3762F8358DB2EFC7B9D7 /* Pods-TouristSites.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
