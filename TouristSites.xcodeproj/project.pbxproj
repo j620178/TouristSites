@@ -14,6 +14,8 @@
 		741B6ED1236A59BC00B76090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741B6ED0236A59BC00B76090 /* Assets.xcassets */; };
 		741B6ED4236A59BC00B76090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741B6ED2236A59BC00B76090 /* LaunchScreen.storyboard */; };
 		741B6EE0236A5C9500B76090 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EDF236A5C9400B76090 /* UIColor+Extension.swift */; };
+		741B6EE3236A5E1700B76090 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EE1236A5E1600B76090 /* HTTPClient.swift */; };
+		741B6EE4236A5E1700B76090 /* TouristSitesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EE2236A5E1600B76090 /* TouristSitesManager.swift */; };
 		84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		741B6ED3236A59BC00B76090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741B6ED5236A59BC00B76090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		741B6EDF236A5C9400B76090 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		741B6EE1236A5E1600B76090 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		741B6EE2236A5E1600B76090 /* TouristSitesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristSitesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 		741B6EDD236A5BA000B76090 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				741B6EE1236A5E1600B76090 /* HTTPClient.swift */,
+				741B6EE2236A5E1600B76090 /* TouristSitesManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,7 +248,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				741B6ECC236A59BA00B76090 /* MainViewController.swift in Sources */,
+				741B6EE3236A5E1700B76090 /* HTTPClient.swift in Sources */,
 				741B6EC8236A59BA00B76090 /* AppDelegate.swift in Sources */,
+				741B6EE4236A5E1700B76090 /* TouristSitesManager.swift in Sources */,
 				741B6ECA236A59BA00B76090 /* SceneDelegate.swift in Sources */,
 				741B6EE0236A5C9500B76090 /* UIColor+Extension.swift in Sources */,
 			);
