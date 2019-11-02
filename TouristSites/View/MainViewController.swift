@@ -14,7 +14,6 @@ class MainViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .backgroundGray
         tableView.separatorStyle = .none
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.registerWithNib(identifier: TouristSiteCell.identifier)
         return tableView
@@ -56,6 +55,10 @@ class MainViewController: UIViewController {
         
         view.addSubview(indicatorView)
         indicatorView.addConstraintCenterXYOf(self.view)
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
     }
 
     func setupBinding() {
@@ -88,15 +91,20 @@ extension MainViewController: UITableViewDataSource {
         guard let touristSiteCell = cell as? TouristSiteCell else { return cell }
         
         let cellViewModel = viewModel.getViewModel(index: indexPath.row)
+                        
+        touristSiteCell.viewModel = cellViewModel
+        
+        let detailCellViewModel = viewModel.getDetailViewModel(index: indexPath.row)
+        
+        touristSiteCell.tapCollectionViewCellHandler = { [weak self] _ in
+            let nextVC = DetailViewController(viewModel: detailCellViewModel)
+            self?.navigationController?.pushViewController(nextVC, animated: true)
+        }
         
         touristSiteCell.photoCollectionView.reloadData()
-        
-        touristSiteCell.viewModel = cellViewModel
         
         return touristSiteCell
     }
     
 }
-
-extension MainViewController: UITableViewDelegate {}
 

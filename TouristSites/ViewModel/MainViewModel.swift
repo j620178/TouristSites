@@ -67,6 +67,17 @@ class MainViewModel {
         return cellViewModels.value[index]
     }
     
+    func getDetailViewModel(index: Int) -> DetailCellViewModel {
+        let touristSite = touristSites[index]
+        return DetailCellViewModel(title: touristSite.stitle,
+                                   info: touristSite.info,
+                                   desc: touristSite.xbody,
+                                   longitude: touristSite.longitude,
+                                   latitude: touristSite.latitude,
+                                   address: touristSite.address,
+                                   photoURLs: splitURL(string: touristSite.file))
+    }
+    
     func splitURL(string: String) -> [String] {
         var urls = string.components(separatedBy: "http")
         

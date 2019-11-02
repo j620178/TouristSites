@@ -42,6 +42,8 @@ class TouristSiteCell: UITableViewCell {
         }
     }
     
+    var tapCollectionViewCellHandler: ((UITableViewCell) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCell()
@@ -79,6 +81,7 @@ extension TouristSiteCell: UICollectionViewDataSource {
             for: indexPath)
         guard let photoCell = cell as? TouristSitePhotoCell,
             let viewModel = viewModel else { return cell }
+        photoCell.backgroundColor = .backgroundGray
         photoCell.photo.loadFrom(url: viewModel.photoURL[indexPath.row])
         return photoCell
     }
