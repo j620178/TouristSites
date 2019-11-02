@@ -9,14 +9,12 @@
 import UIKit
 import Network
 
-enum MainViewState {
-    case normal
+enum MainViewState: Equatable {
+    case normal(isEnd: Bool)
     case empty
-    case loading
-    case loadMore
+    case loading(isLoadMore: Bool)
     case apiError
-    case internetError
-    case initInternetError
+    case internetError(isInit: Bool)
 }
 
 class MainViewController: UIViewController {
@@ -77,9 +75,12 @@ class MainViewController: UIViewController {
         setupInternetListening()
     }
     
-    func setupView() {
+    private func setupView() {
         title = "台北市熱門景點"
         view.backgroundColor = .backgroundGray
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem()
+        navigationItem.backBarButtonItem?.title = ""
         
         view.addSubview(tableView)
         tableView.addConstrainSameWith(self.view)
@@ -90,13 +91,9 @@ class MainViewController: UIViewController {
         
         view.addSubview(errorDescLabel)
         errorDescLabel.addConstraintCenterXYOf(self.view)
-        
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem
     }
 
-    func setupBinding() {
+    private func setupBinding() {
         
         viewModel.cellViewModels.addObserver { [weak self] (newViewModels, oldViewModels) in
             
@@ -112,56 +109,62 @@ class MainViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 switch state {
-                case .normal:
-                    self?.tableView.isHidden = false
-                    self?.errorDescLabel.isHidden = true
-                    self?.indicatorView.isHidden = true
+                case .normal(let isEnd):
+                    self?.showTableView(isEnd: isEnd)
                 case .empty:
-                    self?.tableView.isHidden = true
-                    self?.errorDescLabel.isHidden = false
-                    self?.errorDescLabel.text = "尚無資料"
-                    self?.indicatorView.isHidden = true
-                case .loading:
-                    self?.tableView.isHidden = true
-                    self?.indicatorView.isHidden = false
-                case .loadMore:
-                    break
+                    self?.showInfoLabel(text: "尚無資料...")
+                case .loading(let isLoadMore):
+                    isLoadMore ? nil : self?.showIndicator()
                 case .apiError:
-                    self?.tableView.isHidden = true
-                    self?.errorDescLabel.isHidden = false
-                    self?.errorDescLabel.text = "系統發生異常"
-                    self?.indicatorView.isHidden = true
-                case .internetError:
-                    self?.tableView.isHidden = false
-                    self?.errorDescLabel.isHidden = true
-                    self?.indicatorView.isHidden = true
-                    let alert = UIAlertController(title: "無法連線", message: "請確認網路連線狀態", preferredStyle: .alert)
-                    let cancel = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alert.addAction(cancel)
-                    self?.present(alert, animated: true, completion: nil)
-                case .initInternetError:
-                    self?.tableView.isHidden = true
-                    self?.errorDescLabel.isHidden = false
-                    self?.errorDescLabel.text = "網路連線異常"
-                    self?.indicatorView.isHidden = true
+                    self?.showInfoLabel(text: "系統發生異常...")
+                case .internetError(let isInit):
+                    if isInit {
+                        self?.showInfoLabel(text: "網路連線異常...")
+                    } else {
+                        self?.showAlertController(title: "網路無法連線...", message: "請確認網路環境！")
+                    }
                 }
             }
         }
     }
     
-    func setupInternetListening() {
+    private func setupInternetListening() {
         monitor.pathUpdateHandler = { [weak self] path in
             if path.status == .satisfied {
                 self?.viewModel.fetchData()
             } else {
-                if self?.viewModel.numberOfCellViewModels == 0 {
-                    self?.viewModel.state.value = .initInternetError
-                } else {
-                    self?.viewModel.state.value = .internetError
-                }
+                let isInit = self?.viewModel.numberOfCellViewModels == 0
+                self?.viewModel.state.value = .internetError(isInit: isInit)
             }
         }
         monitor.start(queue: DispatchQueue.global())
+    }
+    
+    private func showTableView(isEnd: Bool) {
+        tableView.isHidden = false
+        errorDescLabel.isHidden = true
+        indicatorView.isHidden = true
+        footerView.isHidden = isEnd
+    }
+    
+    private func showInfoLabel(text: String) {
+        tableView.isHidden = true
+        errorDescLabel.isHidden = false
+        errorDescLabel.text = text
+        indicatorView.isHidden = true
+    }
+    
+    private func showIndicator() {
+        tableView.isHidden = true
+        errorDescLabel.isHidden = true
+        indicatorView.isHidden = false
+    }
+    
+    private func showAlertController(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 }
 

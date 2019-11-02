@@ -10,13 +10,13 @@ import Foundation
 
 class MainViewModel {
     
-    var service: TouristSitesService
+    let service: TouristSitesService
+    
+    let state = Observable<MainViewState>(value: .empty)
     
     private var touristSites = [TouristSiteResult]()
     
     private var offset = 0
-    
-    let state = Observable<MainViewState>(value: .empty)
     
     let cellViewModels = Observable<[TouristSiteCellViewModel]>(value: [])
     
@@ -28,26 +28,42 @@ class MainViewModel {
         self.service = service
     }
     
+    private func enableFetch() -> Bool {
+        switch state.value {
+        case .normal(let isEnd):
+            return isEnd ? false : true
+        case .loading:
+            return false
+        default:
+            return true
+        }
+    }
+    
     func fetchData() {
         
-        guard !(state.value == .loading) else { return }
+        guard enableFetch() else { return }
         
-        state.value = offset == 0 ? .loading : .loadMore
+        state.value = .loading(isLoadMore: offset != 0)
         
         service.getTouristSites(offset: offset) { [weak self] result in
+            
+            guard let strongSelf = self else { return }
             
             switch result {
                 
             case .success(let data):
-                self?.touristSites += data.results
-                self?.offset += 10
-                self?.processViewModels()
+                
+                strongSelf.touristSites += data.results
                 
                 if data.results.count > 0 {
-                    self?.state.value = .normal
+                    let isEnd = (strongSelf.offset + 10) > data.count
+                    strongSelf.state.value = .normal(isEnd: isEnd)
+                    strongSelf.offset += 10
                 } else {
-                    self?.state.value = .empty
+                    strongSelf.state.value = .empty
                 }
+                
+                self?.processViewModels()
             
             case .failure:
                 self?.state.value = .apiError
@@ -91,7 +107,7 @@ class MainViewModel {
             }
         }
         
-        return urls.filter { $0.contains("jpg") || $0.contains("JPG") || $0.contains("jpeg") || $0.contains("JPEG") }
+        return urls.filter { $0.contains("jpg") || $0.contains("JPG") || $0.contains("jpeg") || $0.contains("JPEG") || $0.contains("png") || $0.contains("PNG") }
     }
     
 }

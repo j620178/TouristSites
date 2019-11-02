@@ -31,8 +31,19 @@
 		741B6F0D236E5B5600B76090 /* TSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F0C236E5B5600B76090 /* TSNavigationController.swift */; };
 		741B6F13236E9EA700B76090 /* TouristSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F12236E9EA700B76090 /* TouristSite.swift */; };
 		741B6F17236EA05A00B76090 /* TouristSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F16236EA05A00B76090 /* TouristSiteCell.swift */; };
+		744AA6B1236EA92C009A3146 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744AA6B0236EA92C009A3146 /* MainViewModelTests.swift */; };
 		84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		744AA6B3236EA92C009A3146 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741B6EBC236A59BA00B76090 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 741B6EC3236A59BA00B76090;
+			remoteInfo = TouristSites;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0ED39D4C8538C9220125F89E /* Pods-TouristSites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouristSites.debug.xcconfig"; path = "Target Support Files/Pods-TouristSites/Pods-TouristSites.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +75,9 @@
 		741B6F0C236E5B5600B76090 /* TSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSNavigationController.swift; sourceTree = "<group>"; };
 		741B6F12236E9EA700B76090 /* TouristSite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristSite.swift; sourceTree = "<group>"; };
 		741B6F16236EA05A00B76090 /* TouristSiteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristSiteCell.swift; sourceTree = "<group>"; };
+		744AA6AE236EA92C009A3146 /* MainViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MainViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		744AA6B0236EA92C009A3146 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
+		744AA6B2236EA92C009A3146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +86,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		744AA6AB236EA92C009A3146 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				741B6EC6236A59BA00B76090 /* TouristSites */,
+				744AA6AF236EA92C009A3146 /* MainViewModelTests */,
 				741B6EC5236A59BA00B76090 /* Products */,
 				4615357E254CFBBA79486829 /* Pods */,
 				782EAEBDF6F42F4060BDFCDF /* Frameworks */,
@@ -101,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				741B6EC4236A59BA00B76090 /* TouristSites.app */,
+				744AA6AE236EA92C009A3146 /* MainViewModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +208,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		744AA6AF236EA92C009A3146 /* MainViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				744AA6B0236EA92C009A3146 /* MainViewModelTests.swift */,
+				744AA6B2236EA92C009A3146 /* Info.plist */,
+			);
+			path = MainViewModelTests;
+			sourceTree = "<group>";
+		};
 		782EAEBDF6F42F4060BDFCDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +247,24 @@
 			productReference = 741B6EC4236A59BA00B76090 /* TouristSites.app */;
 			productType = "com.apple.product-type.application";
 		};
+		744AA6AD236EA92C009A3146 /* MainViewModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 744AA6B7236EA92C009A3146 /* Build configuration list for PBXNativeTarget "MainViewModelTests" */;
+			buildPhases = (
+				744AA6AA236EA92C009A3146 /* Sources */,
+				744AA6AB236EA92C009A3146 /* Frameworks */,
+				744AA6AC236EA92C009A3146 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				744AA6B4236EA92C009A3146 /* PBXTargetDependency */,
+			);
+			name = MainViewModelTests;
+			productName = MainViewModelTests;
+			productReference = 744AA6AE236EA92C009A3146 /* MainViewModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -227,6 +277,10 @@
 				TargetAttributes = {
 					741B6EC3236A59BA00B76090 = {
 						CreatedOnToolsVersion = 11.0;
+					};
+					744AA6AD236EA92C009A3146 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 741B6EC3236A59BA00B76090;
 					};
 				};
 			};
@@ -244,6 +298,7 @@
 			projectRoot = "";
 			targets = (
 				741B6EC3236A59BA00B76090 /* TouristSites */,
+				744AA6AD236EA92C009A3146 /* MainViewModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +313,13 @@
 				741B6ED4236A59BC00B76090 /* LaunchScreen.storyboard in Resources */,
 				741B6EF3236A65F900B76090 /* TouristSiteCell.xib in Resources */,
 				741B6ED1236A59BC00B76090 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		744AA6AC236EA92C009A3146 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +394,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		744AA6AA236EA92C009A3146 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				744AA6B1236EA92C009A3146 /* MainViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		744AA6B4236EA92C009A3146 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 741B6EC3236A59BA00B76090 /* TouristSites */;
+			targetProxy = 744AA6B3236EA92C009A3146 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		741B6ED2236A59BC00B76090 /* LaunchScreen.storyboard */ = {
@@ -498,6 +576,46 @@
 			};
 			name = Release;
 		};
+		744AA6B5236EA92C009A3146 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2NZHQL2FPV;
+				INFOPLIST_FILE = MainViewModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.littlema.MainViewModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TouristSites.app/TouristSites";
+			};
+			name = Debug;
+		};
+		744AA6B6236EA92C009A3146 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2NZHQL2FPV;
+				INFOPLIST_FILE = MainViewModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.littlema.MainViewModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TouristSites.app/TouristSites";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -515,6 +633,15 @@
 			buildConfigurations = (
 				741B6ED9236A59BC00B76090 /* Debug */,
 				741B6EDA236A59BC00B76090 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		744AA6B7236EA92C009A3146 /* Build configuration list for PBXNativeTarget "MainViewModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				744AA6B5236EA92C009A3146 /* Debug */,
+				744AA6B6236EA92C009A3146 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,14 +10,14 @@ import Kingfisher
 
 extension UIImageView {
     
-    static let semaphore = DispatchSemaphore(value: 10)
+    static let kfSemaphore = DispatchSemaphore(value: 10)
     
     func loadFrom(url: String) {
         guard let realUrl = URL(string: url) else { return }
-    
-        if UIImageView.semaphore.wait(timeout: .distantFuture) == .success {
+        
+        if UIImageView.kfSemaphore.wait(timeout: .distantFuture) == .success {
             self.kf.setImage(with: realUrl)
-            UIImageView.semaphore.signal()
+            UIImageView.kfSemaphore.signal()
         }
     }
 }
