@@ -17,7 +17,13 @@ enum MainViewState: Equatable {
     case internetError(isInit: Bool)
 }
 
+protocol MainViewControllerCoordinatorDelegate: AnyObject {
+    func showDetailFrom(_ viewController: UIViewController, viewModel: DetailViewModel)
+}
+
 class MainViewController: UIViewController {
+    
+    weak var coordinator: MainViewControllerCoordinatorDelegate?
     
     let viewModel: MainViewModel
     
@@ -29,7 +35,7 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerWithNib(identifier: TouristSiteCell.identifier)
+        tableView.registerWithNib(identifier: MainTableViewCell.identifier)
         return tableView
     }()
     
@@ -177,19 +183,19 @@ extension MainViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: TouristSiteCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath)
         
-        guard let touristSiteCell = cell as? TouristSiteCell else { return cell }
+        guard let touristSiteCell = cell as? MainTableViewCell else { return cell }
         
         let cellViewModel = viewModel.getViewModel(index: indexPath.row)
                         
         touristSiteCell.viewModel = cellViewModel
         
-        let detailCellViewModel = viewModel.getDetailViewModel(index: indexPath.row)
+        let detailViewModel = viewModel.getDetailViewModel(index: indexPath.row)
         
         touristSiteCell.tapCollectionViewCellHandler = { [weak self] _ in
-            let nextVC = DetailViewController(viewModel: detailCellViewModel)
-            self?.navigationController?.pushViewController(nextVC, animated: true)
+            guard let strongSelf = self else { return }
+            strongSelf.coordinator?.showDetailFrom(strongSelf, viewModel: detailViewModel)
         }
         
         touristSiteCell.photoCollectionView.reloadData()

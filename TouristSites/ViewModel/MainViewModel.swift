@@ -18,7 +18,7 @@ class MainViewModel {
     
     private var offset = 0
     
-    let cellViewModels = Observable<[TouristSiteCellViewModel]>(value: [])
+    let cellViewModels = Observable<[MainCellViewModel]>(value: [])
     
     var numberOfCellViewModels: Int {
         return cellViewModels.value.count
@@ -43,7 +43,7 @@ class MainViewModel {
         
         guard enableFetch() else { return }
         
-        state.value = .loading(isLoadMore: offset != 0)
+        state.value = .loading(isLoadMore: numberOfCellViewModels != 0)
         
         service.getTouristSites(offset: offset) { [weak self] result in
             
@@ -71,26 +71,29 @@ class MainViewModel {
         }
     }
     
-    func getViewModel(index: Int) -> TouristSiteCellViewModel {
+    func getViewModel(index: Int) -> MainCellViewModel {
         return cellViewModels.value[index]
     }
     
-    func getDetailViewModel(index: Int) -> DetailCellViewModel {
+    func getDetailViewModel(index: Int) -> DetailViewModel {
         let touristSite = touristSites[index]
-        return DetailCellViewModel(title: touristSite.stitle,
-                                   info: touristSite.info,
-                                   desc: touristSite.xbody,
-                                   longitude: touristSite.longitude,
-                                   latitude: touristSite.latitude,
-                                   address: touristSite.address,
-                                   photoURLs: splitURL(string: touristSite.file))
+        
+        return DetailViewModel(descs: [touristSite.stitle,
+                                       touristSite.info,
+                                       touristSite.xbody,
+                                       touristSite.address],
+                               photoURLs: splitURL(string: touristSite.file))
+    }
+    
+    func getTouristSite(index: Int) -> TouristSiteResult {
+        return touristSites[index]
     }
     
     private func processViewModels() {
-        var cellViewModels = [TouristSiteCellViewModel]()
+        var cellViewModels = [MainCellViewModel]()
         
         for touristSite in touristSites {
-            cellViewModels.append(TouristSiteCellViewModel(title: touristSite.stitle, desc: touristSite.xbody, photoURL: splitURL(string: touristSite.file)))
+            cellViewModels.append(MainCellViewModel(title: touristSite.stitle, desc: touristSite.xbody, photoURL: splitURL(string: touristSite.file)))
         }
         
         self.cellViewModels.value = cellViewModels

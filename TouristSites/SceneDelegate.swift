@@ -12,6 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
+    var appCoordinator: Coordinator?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -19,13 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         UIApplication.statusBarFrame = windowScene.statusBarManager?.statusBarFrame
-    
-        let viewModel = MainViewModel(service: TouristSitesService())
-        let vc = MainViewController(viewModel: viewModel)
-        let nc = TSNavigationController(rootViewController: vc)
+        
+        guard let window = window else { return }
+        
+        window.makeKeyAndVisible()
 
-        window?.rootViewController = nc
-        window?.makeKeyAndVisible()
+        appCoordinator = AppCoordinator(window: window)
+        
+        appCoordinator?.start()
         
         UIApplication.shared.statusBarUIView?.backgroundColor = .tintBlue
     }

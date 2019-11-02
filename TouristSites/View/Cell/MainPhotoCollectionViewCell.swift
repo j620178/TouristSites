@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TouristSitePhotoCell: UICollectionViewCell {
+class MainPhotoCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var photo: UIImageView!
     

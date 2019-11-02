@@ -10,13 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var sectionsTitle = ["景點名稱", "景點介紹", "景點資訊", "地點"]
-    
-    var viewModel: DetailCellViewModel {
-        didSet {
-            title = viewModel.title
-        }
-    }
+    var viewModel: DetailViewModel
     
     let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
     
@@ -44,7 +38,7 @@ class DetailViewController: UIViewController {
         return tableView
     }()
 
-    init(viewModel: DetailCellViewModel) {
+    init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -60,7 +54,7 @@ class DetailViewController: UIViewController {
     }
     
     func setupView() {
-        title = viewModel.title
+        title = viewModel.titles[0]
         
         view.backgroundColor = .backgroundGray
         view.addSubview(tableView)
@@ -90,7 +84,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return sectionsTitle.count
+        return viewModel.cellViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,18 +93,7 @@ extension DetailViewController: UITableViewDataSource {
         
         guard let detailCell = cell as? DetailTableViewCell else { return cell }
         
-        detailCell.titleLabel.text = sectionsTitle[indexPath.row]
-        
-        switch indexPath.row {
-        case 0:
-            detailCell.descLabel.text = viewModel.title
-        case 1:
-            detailCell.descLabel.text = viewModel.desc
-        case 2:
-            detailCell.descLabel.text = viewModel.info
-        default:
-            detailCell.descLabel.text = viewModel.address
-        }
+        detailCell.cellViewModel = viewModel.cellViewModels[indexPath.row]
         
         return detailCell
     }

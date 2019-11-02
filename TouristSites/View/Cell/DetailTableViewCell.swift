@@ -10,12 +10,10 @@ import UIKit
 
 struct DetailCellViewModel {
     let title: String
-    let info: String?
-    let desc: String
-    let longitude: String
-    let latitude: String
-    let address: String
-    let photoURLs: [String]
+    //let info: String?
+    let desc: String?
+//    let address: String
+//    let photoURLs: [String]
 }
 
 class DetailTableViewCell: UITableViewCell {
@@ -23,6 +21,13 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var descLabel: UILabel!
+    
+    var cellViewModel: DetailCellViewModel? {
+        didSet {
+            titleLabel.text = cellViewModel?.title
+            descLabel.text = cellViewModel?.desc
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

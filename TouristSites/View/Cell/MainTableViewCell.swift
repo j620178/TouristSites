@@ -8,13 +8,13 @@
 
 import UIKit
 
-struct TouristSiteCellViewModel {
+struct MainCellViewModel {
     let title: String
     let desc: String
     let photoURL: [String]
 }
 
-class TouristSiteCell: UITableViewCell {
+class MainTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -31,11 +31,11 @@ class TouristSiteCell: UITableViewCell {
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
             layout.itemSize = CGSize(width: 180, height: 120)
             photoCollectionView.collectionViewLayout = layout
-            photoCollectionView.registerWithNib(identifier: TouristSitePhotoCell.identifier)
+            photoCollectionView.registerWithNib(identifier: MainPhotoCollectionViewCell.identifier)
         }
     }
     
-    var viewModel: TouristSiteCellViewModel? {
+    var viewModel: MainCellViewModel? {
         didSet {
             titleLabel.text = viewModel?.title
             descTextView.text = viewModel?.desc
@@ -68,7 +68,7 @@ class TouristSiteCell: UITableViewCell {
     
 }
 
-extension TouristSiteCell: UICollectionViewDataSource {
+extension MainTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
@@ -77,9 +77,9 @@ extension TouristSiteCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: TouristSitePhotoCell.identifier,
+            withReuseIdentifier: MainPhotoCollectionViewCell.identifier,
             for: indexPath)
-        guard let photoCell = cell as? TouristSitePhotoCell,
+        guard let photoCell = cell as? MainPhotoCollectionViewCell,
             let viewModel = viewModel else { return cell }
         photoCell.backgroundColor = .backgroundGray
         photoCell.photo.loadFrom(url: viewModel.photoURL[indexPath.row])
@@ -88,7 +88,7 @@ extension TouristSiteCell: UICollectionViewDataSource {
 
 }
 
-extension TouristSiteCell: UICollectionViewDelegate {
+extension MainTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         tapCollectionViewCellHandler?(self)
     }
