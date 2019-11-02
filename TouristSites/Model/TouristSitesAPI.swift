@@ -41,6 +41,10 @@ struct TouristSiteResult: Codable {
     }
 }
 
+struct URLconstant {
+    static var TouristSites = "https://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=36847f3f-deff-4183-a5bb-800737591de5"
+}
+
 enum TouristSitesAPI: RESTfulRequest {
     
     case getTouristSites(offset: Int, limit: Int)
@@ -48,7 +52,7 @@ enum TouristSitesAPI: RESTfulRequest {
     var url: String {
         switch self {
         case .getTouristSites(let offset, let limit):
-            return "https://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=36847f3f-deff-4183-a5bb-800737591de5&limit=\(limit)&offset=\(offset)"
+            return "\(URLconstant.TouristSites)&limit=\(limit)&offset=\(offset)"
         }
     }
     

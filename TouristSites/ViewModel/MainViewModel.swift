@@ -15,10 +15,8 @@ class MainViewModel {
     var touristSites = [TouristSiteResult]()
     
     var offset = 0
-            
-    let isLoading = Observable<Bool>(value: false)
     
-    let isTableViewHidden = Observable<Bool>(value: false)
+    var state = Observable<MainViewState>(value: .empty)
     
     let cellViewModels = Observable<[TouristSiteCellViewModel]>(value: [])
     
@@ -28,11 +26,9 @@ class MainViewModel {
     
     func fetchData() {
         
-        guard !isLoading.value else { return }
+        guard !(state.value == .loading) else { return }
         
-        isLoading.value = true
-
-        offset == 0 ? (isTableViewHidden.value = true) : nil
+        state.value = offset == 0 ? .loading : .loadMore
         
         service.getTouristSites(offset: offset) { [weak self] result in
             
@@ -42,13 +38,16 @@ class MainViewModel {
                 self?.touristSites += data.results
                 self?.offset += 10
                 self?.processViewModels()
-            case .failure(let error):
-                print(error)
-            }
+                
+                if data.results.count > 0 {
+                    self?.state.value = .normal
+                } else {
+                    self?.state.value = .empty
+                }
             
-            self?.isLoading.value = false
-
-            self?.isTableViewHidden.value = false
+            case .failure:
+                self?.state.value = .apiError
+            }
         }
     }
     
