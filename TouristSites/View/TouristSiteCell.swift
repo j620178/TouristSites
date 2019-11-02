@@ -88,4 +88,8 @@ extension TouristSiteCell: UICollectionViewDataSource {
 
 }
 
-extension TouristSiteCell: UICollectionViewDelegate {}
+extension TouristSiteCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        tapCollectionViewCellHandler?(self)
+    }
+}

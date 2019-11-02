@@ -25,6 +25,9 @@
 		741B6EF9236A6DBD00B76090 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EF8236A6DBD00B76090 /* UICollectionView+Extension.swift */; };
 		741B6EFB236D0E9D00B76090 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EFA236D0E9D00B76090 /* MainViewModel.swift */; };
 		741B6EFD236D11F600B76090 /* Kingfisher+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EFC236D11F600B76090 /* Kingfisher+Wrapper.swift */; };
+		741B6F07236DC93900B76090 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F04236DC93900B76090 /* DetailTableViewCell.swift */; };
+		741B6F08236DC93900B76090 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741B6F05236DC93900B76090 /* DetailTableViewCell.xib */; };
+		741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F06236DC93900B76090 /* DetailViewController.swift */; };
 		84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,9 @@
 		741B6EF8236A6DBD00B76090 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		741B6EFA236D0E9D00B76090 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		741B6EFC236D11F600B76090 /* Kingfisher+Wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Wrapper.swift"; sourceTree = "<group>"; };
+		741B6F04236DC93900B76090 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		741B6F05236DC93900B76090 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		741B6F06236DC93900B76090 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				741B6ECB236A59BA00B76090 /* MainViewController.swift */,
+				741B6F04236DC93900B76090 /* DetailTableViewCell.swift */,
+				741B6F05236DC93900B76090 /* DetailTableViewCell.xib */,
+				741B6F06236DC93900B76090 /* DetailViewController.swift */,
 				741B6EEE236A65F900B76090 /* TouristSitePhotoCell.swift */,
 				741B6EED236A65F900B76090 /* TouristSitePhotoCell.xib */,
 				741B6EEC236A65F900B76090 /* TouristSiteCell.swift */,
@@ -220,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				741B6EF1236A65F900B76090 /* TouristSitePhotoCell.xib in Resources */,
+				741B6F08236DC93900B76090 /* DetailTableViewCell.xib in Resources */,
 				741B6ED4236A59BC00B76090 /* LaunchScreen.storyboard in Resources */,
 				741B6EF3236A65F900B76090 /* TouristSiteCell.xib in Resources */,
 				741B6ED1236A59BC00B76090 /* Assets.xcassets in Resources */,
@@ -278,9 +288,11 @@
 				741B6EF9236A6DBD00B76090 /* UICollectionView+Extension.swift in Sources */,
 				741B6EFD236D11F600B76090 /* Kingfisher+Wrapper.swift in Sources */,
 				741B6EF7236A6BA900B76090 /* UITableView+Extension.swift in Sources */,
+				741B6F07236DC93900B76090 /* DetailTableViewCell.swift in Sources */,
 				741B6ECC236A59BA00B76090 /* MainViewController.swift in Sources */,
 				741B6EF2236A65F900B76090 /* TouristSitePhotoCell.swift in Sources */,
 				741B6EE3236A5E1700B76090 /* HTTPClient.swift in Sources */,
+				741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */,
 				741B6EC8236A59BA00B76090 /* AppDelegate.swift in Sources */,
 				741B6EE6236A646000B76090 /* Observable.swift in Sources */,
 				741B6EE4236A5E1700B76090 /* TouristSitesManager.swift in Sources */,
