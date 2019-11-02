@@ -12,30 +12,17 @@ class MainViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .backgroundGray
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        self.view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        tableView.registerWithNib(identifier: TouristSiteCell.identifier)
         return tableView
     }()
     
     lazy var indicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView(style: .medium)
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
         indicatorView.hidesWhenStopped = true
-        self.view.addSubview(indicatorView)
-        NSLayoutConstraint.activate([
-            indicatorView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            indicatorView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
         return indicatorView
     }()
 
@@ -43,12 +30,17 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
-
     }
     
     func setupView() {
         title = "台北市熱門景點"
         view.backgroundColor = .backgroundGray
+        
+        view.addSubview(tableView)
+        tableView.addConstrainSameWith(self.view)
+        
+        view.addSubview(indicatorView)
+        indicatorView.addConstraintCenterXYOf(self.view)
     }
 
 }
@@ -56,11 +48,16 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: TouristSiteCell.identifier, for: indexPath)
+        
+        guard let touristSiteCell = cell as? TouristSiteCell else { return cell }
+        
+        return touristSiteCell
     }
     
 }

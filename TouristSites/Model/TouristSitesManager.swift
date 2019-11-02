@@ -20,10 +20,14 @@ struct TouristSiteContent: Codable {
 
 struct TouristSiteResult: Codable {
     let info: String?
-    let stitle, longitude, langinfo: String
-    let cat1, cat2: String
+    let stitle: String
+    let longitude: String
+    let langinfo: String
+    let cat1: String
+    let cat2: String
     let file: String
-    let latitude, xbody: String
+    let latitude: String
+    let xbody: String
     let id: Int
     let address: String
 
