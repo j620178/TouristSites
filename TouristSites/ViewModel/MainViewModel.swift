@@ -12,16 +12,20 @@ class MainViewModel {
     
     var service: TouristSitesService
     
-    var touristSites = [TouristSiteResult]()
+    private var touristSites = [TouristSiteResult]()
     
-    var offset = 0
+    private var offset = 0
     
-    var state = Observable<MainViewState>(value: .empty)
+    let state = Observable<MainViewState>(value: .empty)
     
     let cellViewModels = Observable<[TouristSiteCellViewModel]>(value: [])
     
     var numberOfCellViewModels: Int {
         return cellViewModels.value.count
+    }
+    
+    init(service: TouristSitesService) {
+        self.service = service
     }
     
     func fetchData() {
@@ -51,20 +55,6 @@ class MainViewModel {
         }
     }
     
-    init(service: TouristSitesService) {
-        self.service = service
-    }
-    
-    func processViewModels() {
-        var cellViewModels = [TouristSiteCellViewModel]()
-        
-        for touristSite in touristSites {
-            cellViewModels.append(TouristSiteCellViewModel(title: touristSite.stitle, desc: touristSite.xbody, photoURL: splitURL(string: touristSite.file)))
-        }
-        
-        self.cellViewModels.value = cellViewModels
-    }
-    
     func getViewModel(index: Int) -> TouristSiteCellViewModel {
         return cellViewModels.value[index]
     }
@@ -80,7 +70,17 @@ class MainViewModel {
                                    photoURLs: splitURL(string: touristSite.file))
     }
     
-    func splitURL(string: String) -> [String] {
+    private func processViewModels() {
+        var cellViewModels = [TouristSiteCellViewModel]()
+        
+        for touristSite in touristSites {
+            cellViewModels.append(TouristSiteCellViewModel(title: touristSite.stitle, desc: touristSite.xbody, photoURL: splitURL(string: touristSite.file)))
+        }
+        
+        self.cellViewModels.value = cellViewModels
+    }
+    
+    private func splitURL(string: String) -> [String] {
         var urls = string.components(separatedBy: "http")
         
         for index in urls.indices.reversed() {

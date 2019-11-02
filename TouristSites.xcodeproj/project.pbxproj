@@ -16,7 +16,6 @@
 		741B6EE3236A5E1700B76090 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EE1236A5E1600B76090 /* HTTPClient.swift */; };
 		741B6EE4236A5E1700B76090 /* TouristSitesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EE2236A5E1600B76090 /* TouristSitesAPI.swift */; };
 		741B6EE6236A646000B76090 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EE5236A646000B76090 /* Observable.swift */; };
-		741B6EF0236A65F900B76090 /* TouristSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EEC236A65F900B76090 /* TouristSiteCell.swift */; };
 		741B6EF1236A65F900B76090 /* TouristSitePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741B6EED236A65F900B76090 /* TouristSitePhotoCell.xib */; };
 		741B6EF2236A65F900B76090 /* TouristSitePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EEE236A65F900B76090 /* TouristSitePhotoCell.swift */; };
 		741B6EF3236A65F900B76090 /* TouristSiteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741B6EEF236A65F900B76090 /* TouristSiteCell.xib */; };
@@ -30,6 +29,8 @@
 		741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F06236DC93900B76090 /* DetailViewController.swift */; };
 		741B6F0B236E328900B76090 /* TouristSitesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F0A236E328900B76090 /* TouristSitesService.swift */; };
 		741B6F0D236E5B5600B76090 /* TSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F0C236E5B5600B76090 /* TSNavigationController.swift */; };
+		741B6F13236E9EA700B76090 /* TouristSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F12236E9EA700B76090 /* TouristSite.swift */; };
+		741B6F17236EA05A00B76090 /* TouristSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F16236EA05A00B76090 /* TouristSiteCell.swift */; };
 		84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +49,6 @@
 		741B6EE1236A5E1600B76090 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		741B6EE2236A5E1600B76090 /* TouristSitesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristSitesAPI.swift; sourceTree = "<group>"; };
 		741B6EE5236A646000B76090 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		741B6EEC236A65F900B76090 /* TouristSiteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristSiteCell.swift; sourceTree = "<group>"; };
 		741B6EED236A65F900B76090 /* TouristSitePhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouristSitePhotoCell.xib; sourceTree = "<group>"; };
 		741B6EEE236A65F900B76090 /* TouristSitePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristSitePhotoCell.swift; sourceTree = "<group>"; };
 		741B6EEF236A65F900B76090 /* TouristSiteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouristSiteCell.xib; sourceTree = "<group>"; };
@@ -62,6 +62,8 @@
 		741B6F06236DC93900B76090 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		741B6F0A236E328900B76090 /* TouristSitesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristSitesService.swift; sourceTree = "<group>"; };
 		741B6F0C236E5B5600B76090 /* TSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSNavigationController.swift; sourceTree = "<group>"; };
+		741B6F12236E9EA700B76090 /* TouristSite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristSite.swift; sourceTree = "<group>"; };
+		741B6F16236EA05A00B76090 /* TouristSiteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristSiteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,14 +124,8 @@
 		741B6EDB236A5B9200B76090 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				741B6ECB236A59BA00B76090 /* MainViewController.swift */,
-				741B6F04236DC93900B76090 /* DetailTableViewCell.swift */,
-				741B6F05236DC93900B76090 /* DetailTableViewCell.xib */,
-				741B6F06236DC93900B76090 /* DetailViewController.swift */,
-				741B6EEE236A65F900B76090 /* TouristSitePhotoCell.swift */,
-				741B6EED236A65F900B76090 /* TouristSitePhotoCell.xib */,
-				741B6EEC236A65F900B76090 /* TouristSiteCell.swift */,
-				741B6EEF236A65F900B76090 /* TouristSiteCell.xib */,
+				741B6F14236E9F1500B76090 /* ViewController */,
+				741B6F15236E9F2F00B76090 /* Cell */,
 				741B6F0C236E5B5600B76090 /* TSNavigationController.swift */,
 			);
 			path = View;
@@ -148,6 +144,7 @@
 			children = (
 				741B6EE1236A5E1600B76090 /* HTTPClient.swift */,
 				741B6EE5236A646000B76090 /* Observable.swift */,
+				741B6F12236E9EA700B76090 /* TouristSite.swift */,
 				741B6EE2236A5E1600B76090 /* TouristSitesAPI.swift */,
 				741B6F0A236E328900B76090 /* TouristSitesService.swift */,
 			);
@@ -164,6 +161,28 @@
 				741B6EF8236A6DBD00B76090 /* UICollectionView+Extension.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		741B6F14236E9F1500B76090 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				741B6ECB236A59BA00B76090 /* MainViewController.swift */,
+				741B6F06236DC93900B76090 /* DetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		741B6F15236E9F2F00B76090 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				741B6F16236EA05A00B76090 /* TouristSiteCell.swift */,
+				741B6F04236DC93900B76090 /* DetailTableViewCell.swift */,
+				741B6F05236DC93900B76090 /* DetailTableViewCell.xib */,
+				741B6EEE236A65F900B76090 /* TouristSitePhotoCell.swift */,
+				741B6EED236A65F900B76090 /* TouristSitePhotoCell.xib */,
+				741B6EEF236A65F900B76090 /* TouristSiteCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		782EAEBDF6F42F4060BDFCDF /* Frameworks */ = {
@@ -292,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				741B6EF9236A6DBD00B76090 /* UICollectionView+Extension.swift in Sources */,
+				741B6F17236EA05A00B76090 /* TouristSiteCell.swift in Sources */,
 				741B6EFD236D11F600B76090 /* Kingfisher+Wrapper.swift in Sources */,
 				741B6EF7236A6BA900B76090 /* UITableView+Extension.swift in Sources */,
 				741B6F07236DC93900B76090 /* DetailTableViewCell.swift in Sources */,
@@ -300,6 +320,7 @@
 				741B6EF2236A65F900B76090 /* TouristSitePhotoCell.swift in Sources */,
 				741B6EE3236A5E1700B76090 /* HTTPClient.swift in Sources */,
 				741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */,
+				741B6F13236E9EA700B76090 /* TouristSite.swift in Sources */,
 				741B6EC8236A59BA00B76090 /* AppDelegate.swift in Sources */,
 				741B6EE6236A646000B76090 /* Observable.swift in Sources */,
 				741B6EE4236A5E1700B76090 /* TouristSitesAPI.swift in Sources */,
@@ -308,7 +329,6 @@
 				741B6ECA236A59BA00B76090 /* SceneDelegate.swift in Sources */,
 				741B6EE0236A5C9500B76090 /* UIColor+Extension.swift in Sources */,
 				741B6EF5236A6A0C00B76090 /* UIView+Extension.swift in Sources */,
-				741B6EF0236A65F900B76090 /* TouristSiteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

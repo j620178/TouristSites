@@ -10,14 +10,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var scrollView: UIScrollView = {
+    var sectionsTitle = ["景點名稱", "景點介紹", "景點資訊", "地點"]
+    
+    var viewModel: DetailCellViewModel {
+        didSet {
+            title = viewModel.title
+        }
+    }
+    
+    let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
+    
+    lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isPagingEnabled = true
         return scrollView
     }()
     
-    var stackView: UIStackView = {
+    lazy var stackView: UIStackView = {
         var stackView = UIStackView()
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
@@ -30,16 +40,9 @@ class DetailViewController: UIViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.registerWithNib(identifier: DetailTableViewCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         return tableView
     }()
-    
-    var viewModel: DetailCellViewModel {
-        didSet {
-            title = viewModel.title
-        }
-    }
-    
-    var sectionsTitle = ["景點名稱", "景點介紹", "景點資訊", "地點"]
 
     init(viewModel: DetailCellViewModel) {
         self.viewModel = viewModel
@@ -54,21 +57,22 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
-        
-        title = viewModel.title
     }
     
     func setupView() {
-        view.backgroundColor = .backgroundGray
-        view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.heightAnchor.constraint(equalToConstant: 300),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        ])
+        title = viewModel.title
         
+        view.backgroundColor = .backgroundGray
+        view.addSubview(tableView)
+        
+        tableView.addConstrainSameWith(view)
+
+        tableView.tableHeaderView = headerView
+        
+        headerView.addSubview(scrollView)
+        scrollView.addConstrainSameWith(headerView)
         scrollView.addSubview(stackView)
+        
         stackView.addConstrainSameWith(scrollView)
         stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
                 
@@ -80,24 +84,17 @@ class DetailViewController: UIViewController {
             imageView.loadFrom(url: url)
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         }
-        
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
     }
-    
 }
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return sectionsTitle.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier, for: indexPath)
         
         guard let detailCell = cell as? DetailTableViewCell else { return cell }
@@ -118,3 +115,5 @@ extension DetailViewController: UITableViewDataSource {
         return detailCell
     }
 }
+
+extension DetailViewController: UITableViewDelegate {}

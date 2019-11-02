@@ -21,6 +21,10 @@ enum MainViewState {
 
 class MainViewController: UIViewController {
     
+    let viewModel: MainViewModel
+    
+    let monitor = NWPathMonitor()
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .backgroundGray
@@ -33,18 +37,18 @@ class MainViewController: UIViewController {
     
     lazy var indicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView(style: .medium)
-        indicatorView.startAnimating()
         indicatorView.hidesWhenStopped = true
+        indicatorView.startAnimating()
         return indicatorView
     }()
     
     lazy var footerView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
         let indicatorView = UIActivityIndicatorView(style: .medium)
+        indicatorView.hidesWhenStopped = true
         view.addSubview(indicatorView)
         indicatorView.addConstraintCenterXYOf(view)
         indicatorView.startAnimating()
-        indicatorView.hidesWhenStopped = true
         return view
     }()
         
@@ -53,10 +57,6 @@ class MainViewController: UIViewController {
         label.textColor = .stringGray
         return label
     }()
-    
-    let viewModel: MainViewModel
-    
-    let monitor = NWPathMonitor()
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -74,18 +74,7 @@ class MainViewController: UIViewController {
         
         setupBinding()
         
-        monitor.pathUpdateHandler = { [weak self] path in
-            if path.status == .satisfied {
-                self?.viewModel.fetchData()
-            } else {
-                if self?.viewModel.numberOfCellViewModels == 0 {
-                    self?.viewModel.state.value = .initInternetError
-                } else {
-                    self?.viewModel.state.value = .internetError
-                }
-            }
-        }
-        monitor.start(queue: DispatchQueue.global())
+        setupInternetListening()
     }
     
     func setupView() {
@@ -108,7 +97,9 @@ class MainViewController: UIViewController {
     }
 
     func setupBinding() {
+        
         viewModel.cellViewModels.addObserver { [weak self] (newViewModels, oldViewModels) in
+            
             var indexPaths = [IndexPath]()
             for index in oldViewModels.count..<newViewModels.count {
                 indexPaths.append(IndexPath(row: index, section: 0))
@@ -117,7 +108,9 @@ class MainViewController: UIViewController {
         }
         
         viewModel.state.addObserver { [weak self] state in
+            
             DispatchQueue.main.async {
+                
                 switch state {
                 case .normal:
                     self?.tableView.isHidden = false
@@ -155,11 +148,27 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    func setupInternetListening() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            if path.status == .satisfied {
+                self?.viewModel.fetchData()
+            } else {
+                if self?.viewModel.numberOfCellViewModels == 0 {
+                    self?.viewModel.state.value = .initInternetError
+                } else {
+                    self?.viewModel.state.value = .internetError
+                }
+            }
+        }
+        monitor.start(queue: DispatchQueue.global())
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return viewModel.numberOfCellViewModels
     }
 
