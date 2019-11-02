@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
         tableView.backgroundColor = .backgroundGray
         tableView.separatorStyle = .none
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.registerWithNib(identifier: TouristSiteCell.identifier)
         return tableView
     }()
@@ -25,6 +26,15 @@ class MainViewController: UIViewController {
         return indicatorView
     }()
     
+    lazy var footerView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
+        let indicatorView = UIActivityIndicatorView(style: .medium)
+        view.addSubview(indicatorView)
+        indicatorView.addConstraintCenterXYOf(view)
+        indicatorView.startAnimating()
+        return view
+    }()
+        
     let viewModel: MainViewModel
     
     init(viewModel: MainViewModel) {
@@ -59,11 +69,17 @@ class MainViewController: UIViewController {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
+        
+        tableView.tableFooterView = footerView
     }
 
     func setupBinding() {
-        viewModel.cellViewModels.addObserver { [weak self] _ in
-            self?.tableView.reloadData()
+        viewModel.cellViewModels.addObserver { [weak self] (newViewModels, oldViewModels) in
+            var indexPaths = [IndexPath]()
+            for index in oldViewModels.count..<newViewModels.count {
+                indexPaths.append(IndexPath(row: index, section: 0))
+            }
+            self?.tableView.insertRows(at: indexPaths, with: .automatic)
         }
         viewModel.isTableViewHidden.addObserver { [weak self] (isHidden) in
             self?.tableView.isHidden = isHidden
@@ -81,9 +97,9 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.cellViewModelsCount
+        return viewModel.numberOfCellViewModels
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: TouristSiteCell.identifier, for: indexPath)
@@ -108,3 +124,26 @@ extension MainViewController: UITableViewDataSource {
     
 }
 
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        
+        cell.alpha = 0
+        
+        let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut, animations: {
+            
+            cell.alpha = 1
+        })
+        
+        animator.startAnimation()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > (scrollView.contentSize.height - UIScreen.main.bounds.height) {
+ 
+            self.viewModel.fetchData()
+        }
+    }
+    
+}

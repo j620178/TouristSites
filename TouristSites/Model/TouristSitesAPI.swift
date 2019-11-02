@@ -41,12 +41,15 @@ struct TouristSiteResult: Codable {
     }
 }
 
-enum TouristSitesManager: RESTfulAPIRequest {
+enum TouristSitesAPI: RESTfulRequest {
     
-    case API
+    case getTouristSites(offset: Int, limit: Int)
     
     var url: String {
-        return "https://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=36847f3f-deff-4183-a5bb-800737591de5"
+        switch self {
+        case .getTouristSites(let offset, let limit):
+            return "https://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=36847f3f-deff-4183-a5bb-800737591de5&limit=\(limit)&offset=\(offset)"
+        }
     }
     
     var header: [String : String] {
@@ -59,11 +62,5 @@ enum TouristSitesManager: RESTfulAPIRequest {
     
     var method: String {
         return HTTPMethod.GET.rawValue
-    }
-    
-    func getTouristSites(offset: Int, limit: Int, completion: @escaping ResultTouristSite) {
-        HTTPClient.shared.request(self) { result in
-            completion(result)
-        }
     }
 }

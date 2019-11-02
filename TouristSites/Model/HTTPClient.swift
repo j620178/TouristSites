@@ -27,14 +27,14 @@ enum HTTPHeaderValue: String {
     case applicationJson = "application/json"
 }
 
-protocol RESTfulAPIRequest {
+protocol RESTfulRequest {
     var url: String { get }
     var header: [String: String] { get }
     var body: Data? { get }
     var method: String { get }
 }
 
-extension RESTfulAPIRequest {
+extension RESTfulRequest {
     func makeRequest() -> URLRequest {
         let realURL = URL(string: url)!
         var request = URLRequest(url: realURL)
@@ -53,7 +53,7 @@ class HTTPClient {
     
     var decoder = JSONDecoder()
     
-    func request(_ request: RESTfulAPIRequest,
+    func request(_ request: RESTfulRequest,
                  completion: @escaping ResultTouristSite) {
 
         URLSession.shared.dataTask(with: request.makeRequest(),

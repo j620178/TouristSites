@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let viewModel = MainViewModel(manager: TouristSitesManager.API)
+        let viewModel = MainViewModel(service: TouristSitesService())
         let vc = MainViewController(viewModel: viewModel)
         let nc = UINavigationController(rootViewController: vc)
 

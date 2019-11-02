@@ -12,12 +12,18 @@ class Observable<T> {
     var value: T {
         didSet {
             DispatchQueue.main.async {
-                self.valueChanged?(self.value)
+                if self.valueChanged != nil {
+                    self.valueChanged?(self.value)
+                } else {
+                    self.valueChangedWithOldValue?(self.value, oldValue)
+                }
             }
         }
     }
     
     private var valueChanged: ((T) -> Void)?
+    
+    private var valueChangedWithOldValue: ((T, T) -> Void)?
     
     init(value: T) {
         self.value = value
@@ -25,6 +31,13 @@ class Observable<T> {
     
     func addObserver(initial: Bool = false, onChange: ((T) -> Void)?) {
         valueChanged = onChange
+        if initial {
+            valueChanged?(value)
+        }
+    }
+    
+    func addObserver(initial: Bool = false, onChange: ((_ newValue: T, _ oldValue: T) -> Void)?) {
+        valueChangedWithOldValue = onChange
         if initial {
             valueChanged?(value)
         }

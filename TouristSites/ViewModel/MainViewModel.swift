@@ -10,47 +10,50 @@ import Foundation
 
 class MainViewModel {
     
-    var manager: TouristSitesManager
+    var service: TouristSitesService
     
     var touristSites = [TouristSiteResult]()
     
     var offset = 0
-    
+            
     let isLoading = Observable<Bool>(value: false)
     
     let isTableViewHidden = Observable<Bool>(value: false)
     
     let cellViewModels = Observable<[TouristSiteCellViewModel]>(value: [])
     
-    var cellViewModelsCount: Int {
+    var numberOfCellViewModels: Int {
         return cellViewModels.value.count
     }
     
     func fetchData() {
+        
+        guard !isLoading.value else { return }
+        
         isLoading.value = true
+
+        offset == 0 ? (isTableViewHidden.value = true) : nil
         
-        isTableViewHidden.value = true
-        
-        manager.getTouristSites(offset: 0, limit: 0) { [weak self] result in
+        service.getTouristSites(offset: offset) { [weak self] result in
             
             switch result {
                 
             case .success(let data):
-                self?.touristSites = data.results
-                self?.offset = data.offset
+                self?.touristSites += data.results
+                self?.offset += 10
                 self?.processViewModels()
             case .failure(let error):
                 print(error)
             }
             
             self?.isLoading.value = false
-            
+
             self?.isTableViewHidden.value = false
         }
     }
     
-    init(manager: TouristSitesManager) {
-        self.manager = manager
+    init(service: TouristSitesService) {
+        self.service = service
     }
     
     func processViewModels() {
