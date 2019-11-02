@@ -25,11 +25,26 @@ class MainViewController: UIViewController {
         indicatorView.hidesWhenStopped = true
         return indicatorView
     }()
+    
+    let viewModel: MainViewModel
+    
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        
+        setupBinding()
+        
+        viewModel.fetchData()
     }
     
     func setupView() {
@@ -43,12 +58,27 @@ class MainViewController: UIViewController {
         indicatorView.addConstraintCenterXYOf(self.view)
     }
 
+    func setupBinding() {
+        viewModel.cellViewModels.addObserver { [weak self] _ in
+            self?.tableView.reloadData()
+        }
+        viewModel.isTableViewHidden.addObserver { [weak self] (isHidden) in
+            self?.tableView.isHidden = isHidden
+        }
+        viewModel.isLoading.addObserver { [weak self] (isLoading) in
+            if isLoading {
+                self?.indicatorView.startAnimating()
+            } else {
+                self?.indicatorView.stopAnimating()
+            }
+        }
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.cellViewModelsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,6 +86,16 @@ extension MainViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TouristSiteCell.identifier, for: indexPath)
         
         guard let touristSiteCell = cell as? TouristSiteCell else { return cell }
+        
+        let cellViewModel = viewModel.getViewModel(index: indexPath.row)
+        
+        touristSiteCell.photoCollectionView.reloadData()
+                
+        touristSiteCell.titleLabel.text = cellViewModel.title
+        
+        touristSiteCell.descTextView.text = cellViewModel.desc
+        
+        touristSiteCell.viewModel = cellViewModel
         
         return touristSiteCell
     }

@@ -31,8 +31,7 @@ class TouristSiteCell: UITableViewCell {
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
             layout.itemSize = CGSize(width: 180, height: 120)
             photoCollectionView.collectionViewLayout = layout
-            let nib = UINib(nibName: TouristSitePhotoCell.identifier, bundle: nil)
-            photoCollectionView.register(nib, forCellWithReuseIdentifier: TouristSitePhotoCell.identifier)
+            photoCollectionView.registerWithNib(identifier: TouristSitePhotoCell.identifier)
         }
     }
     
@@ -73,7 +72,9 @@ extension TouristSiteCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: TouristSitePhotoCell.identifier,
             for: indexPath)
-        return cell
+        guard let photoCell = cell as? TouristSitePhotoCell,
+            let viewModel = viewModel else { return cell }
+        return photoCell
     }
 
 }
