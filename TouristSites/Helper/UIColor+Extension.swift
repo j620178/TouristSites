@@ -12,4 +12,9 @@ extension UIColor {
     static var backgroundGray: UIColor {
         return UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
     }
+    
+    static var tintBlue: UIColor {
+        return UIColor(red: 63 / 255, green: 193 / 255, blue: 238 / 255, alpha: 1)
+    }
+
 }

@@ -29,6 +29,7 @@
 		741B6F08236DC93900B76090 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741B6F05236DC93900B76090 /* DetailTableViewCell.xib */; };
 		741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F06236DC93900B76090 /* DetailViewController.swift */; };
 		741B6F0B236E328900B76090 /* TouristSitesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F0A236E328900B76090 /* TouristSitesService.swift */; };
+		741B6F0D236E5B5600B76090 /* TSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F0C236E5B5600B76090 /* TSNavigationController.swift */; };
 		84078E88448959B1D6235675 /* Pods_TouristSites.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		741B6F05236DC93900B76090 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		741B6F06236DC93900B76090 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		741B6F0A236E328900B76090 /* TouristSitesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristSitesService.swift; sourceTree = "<group>"; };
+		741B6F0C236E5B5600B76090 /* TSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				741B6EED236A65F900B76090 /* TouristSitePhotoCell.xib */,
 				741B6EEC236A65F900B76090 /* TouristSiteCell.swift */,
 				741B6EEF236A65F900B76090 /* TouristSiteCell.xib */,
+				741B6F0C236E5B5600B76090 /* TSNavigationController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				741B6EFD236D11F600B76090 /* Kingfisher+Wrapper.swift in Sources */,
 				741B6EF7236A6BA900B76090 /* UITableView+Extension.swift in Sources */,
 				741B6F07236DC93900B76090 /* DetailTableViewCell.swift in Sources */,
+				741B6F0D236E5B5600B76090 /* TSNavigationController.swift in Sources */,
 				741B6ECC236A59BA00B76090 /* MainViewController.swift in Sources */,
 				741B6EF2236A65F900B76090 /* TouristSitePhotoCell.swift in Sources */,
 				741B6EE3236A5E1700B76090 /* HTTPClient.swift in Sources */,

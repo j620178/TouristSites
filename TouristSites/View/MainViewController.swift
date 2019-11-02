@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import Network
+
+enum MainViewState {
+    case normal
+    case empty
+    case lodaing
+    case apiError
+    case internetError
+}
 
 class MainViewController: UIViewController {
     
@@ -37,6 +46,8 @@ class MainViewController: UIViewController {
         
     let viewModel: MainViewModel
     
+    let monitor = NWPathMonitor()
+    
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -48,12 +59,21 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setupView()
         
         setupBinding()
         
         viewModel.fetchData()
+        
+        monitor.pathUpdateHandler = { path in
+           if path.status == .satisfied {
+              print("connected")
+           } else {
+              print("no connection")
+           }
+        }
+        monitor.start(queue: DispatchQueue.global())
     }
     
     func setupView() {
