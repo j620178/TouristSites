@@ -90,10 +90,6 @@ extension MainViewController: UITableViewDataSource {
         let cellViewModel = viewModel.getViewModel(index: indexPath.row)
         
         touristSiteCell.photoCollectionView.reloadData()
-                
-        touristSiteCell.titleLabel.text = cellViewModel.title
-        
-        touristSiteCell.descTextView.text = cellViewModel.desc
         
         touristSiteCell.viewModel = cellViewModel
         

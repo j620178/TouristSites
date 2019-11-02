@@ -35,7 +35,12 @@ class TouristSiteCell: UITableViewCell {
         }
     }
     
-    var viewModel: TouristSiteCellViewModel?
+    var viewModel: TouristSiteCellViewModel? {
+        didSet {
+            titleLabel.text = viewModel?.title
+            descTextView.text = viewModel?.desc
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -74,6 +79,7 @@ extension TouristSiteCell: UICollectionViewDataSource {
             for: indexPath)
         guard let photoCell = cell as? TouristSitePhotoCell,
             let viewModel = viewModel else { return cell }
+        photoCell.photo.loadFrom(url: viewModel.photoURL[indexPath.row])
         return photoCell
     }
 
