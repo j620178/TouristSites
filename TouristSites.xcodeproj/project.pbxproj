@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7413E53A2370DC1100B9486C /* Kingfisher+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413E5392370DC1100B9486C /* Kingfisher+Wrapper.swift */; };
+		7413E53E2371744B00B9486C /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413E53D2371744A00B9486C /* NetworkMonitor.swift */; };
 		741B6EC8236A59BA00B76090 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EC7236A59BA00B76090 /* AppDelegate.swift */; };
 		741B6ECA236A59BA00B76090 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EC9236A59BA00B76090 /* SceneDelegate.swift */; };
 		741B6ECC236A59BA00B76090 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6ECB236A59BA00B76090 /* MainViewController.swift */; };
@@ -23,7 +25,6 @@
 		741B6EF7236A6BA900B76090 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EF6236A6BA900B76090 /* UITableView+Extension.swift */; };
 		741B6EF9236A6DBD00B76090 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EF8236A6DBD00B76090 /* UICollectionView+Extension.swift */; };
 		741B6EFB236D0E9D00B76090 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EFA236D0E9D00B76090 /* MainViewModel.swift */; };
-		741B6EFD236D11F600B76090 /* Kingfisher+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6EFC236D11F600B76090 /* Kingfisher+Wrapper.swift */; };
 		741B6F07236DC93900B76090 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F04236DC93900B76090 /* DetailTableViewCell.swift */; };
 		741B6F08236DC93900B76090 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 741B6F05236DC93900B76090 /* DetailTableViewCell.xib */; };
 		741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B6F06236DC93900B76090 /* DetailViewController.swift */; };
@@ -51,6 +52,8 @@
 		0ED39D4C8538C9220125F89E /* Pods-TouristSites.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouristSites.debug.xcconfig"; path = "Target Support Files/Pods-TouristSites/Pods-TouristSites.debug.xcconfig"; sourceTree = "<group>"; };
 		3A53F5AB98EA2382F26C886C /* Pods_TouristSites.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TouristSites.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D0B3762F8358DB2EFC7B9D7 /* Pods-TouristSites.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TouristSites.release.xcconfig"; path = "Target Support Files/Pods-TouristSites/Pods-TouristSites.release.xcconfig"; sourceTree = "<group>"; };
+		7413E5392370DC1100B9486C /* Kingfisher+Wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Wrapper.swift"; sourceTree = "<group>"; };
+		7413E53D2371744A00B9486C /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		741B6EC4236A59BA00B76090 /* TouristSites.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristSites.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741B6EC7236A59BA00B76090 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		741B6EC9236A59BA00B76090 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +72,6 @@
 		741B6EF6236A6BA900B76090 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		741B6EF8236A6DBD00B76090 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		741B6EFA236D0E9D00B76090 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		741B6EFC236D11F600B76090 /* Kingfisher+Wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Wrapper.swift"; sourceTree = "<group>"; };
 		741B6F04236DC93900B76090 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		741B6F05236DC93900B76090 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		741B6F06236DC93900B76090 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -183,7 +185,8 @@
 		741B6EDE236A5C7900B76090 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				741B6EFC236D11F600B76090 /* Kingfisher+Wrapper.swift */,
+				7413E53D2371744A00B9486C /* NetworkMonitor.swift */,
+				7413E5392370DC1100B9486C /* Kingfisher+Wrapper.swift */,
 				741B6EDF236A5C9400B76090 /* UIColor+Extension.swift */,
 				741B6EF4236A6A0C00B76090 /* UIView+Extension.swift */,
 				741B6EF6236A6BA900B76090 /* UITableView+Extension.swift */,
@@ -380,7 +383,6 @@
 			files = (
 				741B6EF9236A6DBD00B76090 /* UICollectionView+Extension.swift in Sources */,
 				741B6F17236EA05A00B76090 /* MainTableViewCell.swift in Sources */,
-				741B6EFD236D11F600B76090 /* Kingfisher+Wrapper.swift in Sources */,
 				741B6EF7236A6BA900B76090 /* UITableView+Extension.swift in Sources */,
 				741B6F07236DC93900B76090 /* DetailTableViewCell.swift in Sources */,
 				741B6F0D236E5B5600B76090 /* TSNavigationController.swift in Sources */,
@@ -390,10 +392,12 @@
 				741B6F09236DC93900B76090 /* DetailViewController.swift in Sources */,
 				741B6F13236E9EA700B76090 /* TouristSite.swift in Sources */,
 				741B6EC8236A59BA00B76090 /* AppDelegate.swift in Sources */,
+				7413E53E2371744B00B9486C /* NetworkMonitor.swift in Sources */,
 				744AA6BA23707292009A3146 /* AppCoordinator.swift in Sources */,
 				741B6EE6236A646000B76090 /* Observable.swift in Sources */,
 				741B6EE4236A5E1700B76090 /* TouristSitesAPI.swift in Sources */,
 				741B6F0B236E328900B76090 /* TouristSitesService.swift in Sources */,
+				7413E53A2370DC1100B9486C /* Kingfisher+Wrapper.swift in Sources */,
 				744AA6BC23707EAA009A3146 /* DetailViewModel.swift in Sources */,
 				741B6EFB236D0E9D00B76090 /* MainViewModel.swift in Sources */,
 				741B6ECA236A59BA00B76090 /* SceneDelegate.swift in Sources */,

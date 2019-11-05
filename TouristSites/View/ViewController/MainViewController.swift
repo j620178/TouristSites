@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Network
 
 enum MainViewState: Equatable {
     case normal(isEnd: Bool)
@@ -27,8 +26,8 @@ class MainViewController: UIViewController {
     
     let viewModel: MainViewModel
     
-    let monitor = NWPathMonitor()
-    
+    let monitor = NetworkMonitor()
+        
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .backgroundGray
@@ -135,15 +134,15 @@ class MainViewController: UIViewController {
     }
     
     private func setupInternetListening() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            if path.status == .satisfied {
+        monitor.startMonitoring { [weak self] (connection, reachable) in
+            if reachable == .yes {
                 self?.viewModel.fetchData()
             } else {
                 let isInit = self?.viewModel.numberOfCellViewModels == 0
                 self?.viewModel.state.value = .internetError(isInit: isInit)
             }
         }
-        monitor.start(queue: DispatchQueue.global())
+        viewModel.fetchData()
     }
     
     private func showTableView(isEnd: Bool) {
