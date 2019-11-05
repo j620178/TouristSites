@@ -1,6 +1,0 @@
-framework module Pods_TouristSites {
-  umbrella header "Pods-TouristSites-umbrella.h"
-
-  export *
-  module * { export * }
-}
