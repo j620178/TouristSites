@@ -54,13 +54,12 @@ class DetailViewController: UIViewController {
     }
     
     func setupView() {
-        title = viewModel.titles[0]
+        title = viewModel.cellViewModels[0].desc
         
         view.backgroundColor = .backgroundGray
         view.addSubview(tableView)
         
         tableView.addConstrainSameWith(view)
-
         tableView.tableHeaderView = headerView
         
         headerView.addSubview(scrollView)
